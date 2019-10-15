@@ -56,11 +56,13 @@ public class AppsflyerSdkPlugin implements MethodCallHandler {
 
     AppsflyerSdkPlugin(Registrar registrar) {
         this.mFlutterView = registrar.view();
-        this.mContext = registrar.activity().getApplicationContext();
-        this.mApplication = registrar.activity().getApplication();
-        this.mIntent = registrar.activity().getIntent();
-        this.mEventChannel = new EventChannel(registrar.messenger(), AF_EVENTS_CHANNEL);
-                mEventChannel.setStreamHandler(new AppsFlyerStreamHandler(mContext));
+        if(registrar.activity() != null) {
+            this.mContext = registrar.activity().getApplicationContext();
+            this.mApplication = registrar.activity().getApplication();
+            this.mIntent = registrar.activity().getIntent();
+            this.mEventChannel = new EventChannel(registrar.messenger(), AF_EVENTS_CHANNEL);
+            mEventChannel.setStreamHandler(new AppsFlyerStreamHandler(mContext));
+        }
     }
 
     public static void registerWith(Registrar registrar) {
