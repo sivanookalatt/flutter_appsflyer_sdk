@@ -42,7 +42,7 @@ import static com.appsflyer.appsflyersdk.AppsFlyerConstants.AF_VALIDATE_PURCHASE
  * AppsflyerSdkPlugin
  */
 public class AppsflyerSdkPlugin implements MethodCallHandler {
-    private final EventChannel mEventChannel;
+    private EventChannel mEventChannel;
     /**
      * Plugin registration.
      */
